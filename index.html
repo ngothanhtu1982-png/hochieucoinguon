@@ -1,0 +1,830 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Lạc Lạc Hộ Chiếu Cội Nguồn</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: a "course" style channel. Landing page + 15 lessons (L00-L14) grouped in 6 parts named after the 6 stations.
+   Finishing a part earns its stamp (ấn mộc), mirroring the passport mechanic of the project. */
+:root{
+  --bg:#F7F3E6; --surface:#FFFDF5; --surface-2:#EFE9D3; --fg:#22301E; --muted:#5B6853; --line:#DDD5BA;
+  --green:#6E8F45; --forest:#2E4A2A; --accent:#35592B; --on-accent:#FFFDF5;
+  --coral:#CF4439; --gold:#E3A52B; --wood:#B98A5B; --soft-green:#E3ECCB; --soft-coral:#F7DAD3; --soft-gold:#F8E8BE;
+  --ink-stamp:#B23A30;
+  --font-display:'Baloo 2','Be Vietnam Pro',system-ui,sans-serif;
+  --font-body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141B12; --surface:#1C2619; --surface-2:#243021; --fg:#F0EBD8; --muted:#A8B39B; --line:#33402E;
+  --green:#8FB35D; --forest:#B9D68A; --accent:#A5CB72; --on-accent:#16210F;
+  --coral:#F0716A; --gold:#EDBB52; --wood:#C99B6B; --soft-green:#2A3a22; --soft-coral:#3C2522; --soft-gold:#3A3118;
+  --ink-stamp:#F0716A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141B12; --surface:#1C2619; --surface-2:#243021; --fg:#F0EBD8; --muted:#A8B39B; --line:#33402E;
+  --green:#8FB35D; --forest:#B9D68A; --accent:#A5CB72; --on-accent:#16210F;
+  --coral:#F0716A; --gold:#EDBB52; --wood:#C99B6B; --soft-green:#2A3a22; --soft-coral:#3C2522; --soft-gold:#3A3118;
+  --ink-stamp:#F0716A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.65;margin:0;padding-block:0}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance;color:var(--forest);font-weight:700}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-block:6px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:var(--surface-2);border:2px solid var(--green)}
+.brand b{font-family:var(--font-display);font-size:20px;color:var(--forest);line-height:1}
+.brand small{display:block;font-size:12px;color:var(--muted);line-height:1.2}
+.spacer{flex:1}
+.prog{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.prog .dots{display:flex;gap:5px}
+.dot{width:16px;height:16px;border-radius:50%;border:2px dashed var(--line);background:transparent}
+.dot.on{border:2px solid var(--ink-stamp);background:var(--ink-stamp)}
+.prog b{color:var(--fg);font-variant-numeric:tabular-nums}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:11px 20px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.btn.small{padding:7px 14px;font-size:14px}
+
+/* hero */
+.hero{padding-block:44px 28px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:center}
+.hero h1{font-size:clamp(40px,6.4vw,76px);font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero p.lead{font-size:18px;max-width:54ch;margin-top:18px;color:var(--fg)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{border:1.5px solid var(--line);background:var(--surface);padding:4px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
+.hero-art{position:relative;display:grid;place-items:center;min-width:0}
+.plinth{position:absolute;inset:auto 8% 2% 8%;height:34%;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,var(--wood),color-mix(in srgb,var(--wood) 60%,#000));opacity:.35;filter:blur(2px)}
+.hero-art img{position:relative;width:min(100%,430px);aspect-ratio:410/488;object-fit:cover;border-radius:46% 46% 24px 24px;border:3px solid var(--surface);box-shadow:0 18px 40px -18px rgba(30,45,20,.45);background:var(--surface-2)}
+.tag{position:absolute;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:6px 12px;font-size:13px;font-weight:600;box-shadow:0 6px 14px -8px rgba(0,0,0,.3)}
+.tag.a{left:0;top:12%;transform:rotate(-4deg);color:var(--forest)}
+.tag.b{right:0;bottom:16%;transform:rotate(3deg);color:var(--coral)}
+
+/* sections */
+section.band{padding-block:40px}
+section.band h2{font-size:clamp(28px,4vw,40px);margin-bottom:6px}
+.sub{color:var(--muted);max-width:62ch;margin-top:8px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.card h3{font-size:21px;margin-bottom:6px}
+.card p+p{margin-top:8px}
+.stat{padding:18px 20px}
+.stat b{display:block;font-family:var(--font-display);font-size:38px;line-height:1;color:var(--forest);font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+.mascot-show{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.viewer{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:14px;min-width:0}
+.viewer .frame{aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:var(--surface-2);display:grid;place-items:center}
+.viewer .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.seg{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg button{border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.sw{display:flex;gap:10px;align-items:center;font-size:14px}
+.sw i{width:30px;height:30px;border-radius:50%;flex:none;border:2px solid var(--surface);box-shadow:0 0 0 1.5px var(--line)}
+.sw b{display:block;font-weight:600}
+.sw span{color:var(--muted);font-size:13px;line-height:1.3;display:block}
+
+/* syllabus */
+.part{margin-top:22px}
+.part-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.part-h h3{font-size:20px}
+.part-h small{color:var(--muted)}
+.lesson-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;text-decoration:none;margin-top:8px}
+.lesson-row:hover{border-color:var(--green)}
+.lesson-row .n{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--green)}
+.lesson-row b{display:block;font-weight:600}
+.lesson-row span{font-size:14px;color:var(--muted);display:block}
+.lesson-row .m{font-size:13px;color:var(--muted);white-space:nowrap}
+.lesson-row.done .n::after{content:" ✓";color:var(--ink-stamp)}
+
+/* lesson shell */
+.shell{display:grid;grid-template-columns:280px minmax(0,1fr);gap:36px;padding-block:28px 56px;align-items:start}
+.side{position:sticky;top:calc(72px + env(safe-area-inset-top,0px));max-height:calc(100vh - 90px);overflow:auto;padding-right:6px}
+.side details>summary{display:none}
+.side .p-title{font-family:var(--font-display);font-weight:700;color:var(--forest);font-size:15px;margin:14px 0 4px;display:flex;gap:8px;align-items:center}
+.side a{display:flex;gap:8px;padding:7px 10px;border-radius:9px;text-decoration:none;font-size:14.5px;line-height:1.35;color:var(--fg)}
+.side a:hover{background:var(--surface-2)}
+.side a[aria-current="page"]{background:var(--soft-green);font-weight:600}
+.side a .n{color:var(--green);font-weight:700;min-width:30px;font-variant-numeric:tabular-nums}
+.side a.done .n::after{content:"✓";margin-left:2px;color:var(--ink-stamp)}
+.article{min-width:0;max-width:760px}
+.crumb{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.article h1{font-size:clamp(32px,5vw,48px);margin:8px 0 4px;font-weight:800}
+.article .lede{font-size:18px;color:var(--muted);margin-top:8px}
+.article h2{font-size:26px;margin:38px 0 10px}
+.article h3{font-size:19px;margin:20px 0 6px}
+.article p+p{margin-top:10px}
+.article ul{margin:8px 0 0;padding-left:20px}
+.article li{margin:5px 0}
+.say{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px;align-items:start;margin:22px 0;background:var(--soft-gold);border:1.5px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:16px;padding:14px 16px}
+.say img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:2px solid var(--surface);background:var(--surface-2)}
+.say b{font-family:var(--font-display);color:var(--forest);font-size:15px;display:block;line-height:1.2}
+.say p{font-size:15px}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:600;background:var(--surface-2);color:var(--muted)}
+.pill.hi{background:var(--soft-coral);color:var(--coral)}
+.pill.mid{background:var(--soft-gold);color:#8A5F00}
+.pill.lo{background:var(--soft-green);color:var(--forest)}
+:root[data-theme="dark"] .pill.mid{color:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pill.mid{color:var(--gold)}}
+.tbl{overflow-x:auto;border:1.5px solid var(--line);border-radius:12px;margin-top:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;background:var(--surface-2)}
+.note{font-size:13.5px;color:var(--muted);border-left:3px solid var(--gold);padding:4px 0 4px 12px;margin-top:14px}
+.pager{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1.5px solid var(--line)}
+.pager .grow{display:flex;gap:10px;flex-wrap:wrap}
+.circ{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.circ figure{margin:0;text-align:center;font-size:13.5px;color:var(--muted)}
+.circ img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 1.5px var(--line)}
+.circ figcaption{margin-top:6px;line-height:1.35}
+
+/* route */
+.route{display:flex;gap:0;margin-top:16px;overflow-x:auto;padding-bottom:6px}
+.stop{flex:1 0 96px;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:6px 4px;position:relative;font-size:13px;text-align:center;color:var(--muted)}
+.stop::before{content:"";position:absolute;top:30px;left:-50%;width:100%;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 11px);z-index:0}
+.stop:first-child::before{display:none}
+.stop .bub{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2.5px solid var(--green);font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--forest)}
+.stop[aria-pressed="true"] .bub{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.stop[aria-pressed="true"]{color:var(--fg);font-weight:600}
+.stop.stamped .bub::after{content:"";position:absolute;right:-4px;top:-4px;width:16px;height:16px;border-radius:50%;background:var(--ink-stamp);border:2px solid var(--bg)}
+.detail{margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:18px;align-items:center}
+.detail h3{margin:0 0 6px}
+.slot{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;border:3px dashed var(--line);background:var(--surface);cursor:pointer;padding:0;position:relative;width:100%;max-width:190px}
+.slot.on{border:3px solid var(--ink-stamp);animation:thump .35s ease-out}
+.slot svg{width:78%;height:78%}
+@keyframes thump{0%{transform:scale(1.25) rotate(-8deg);opacity:.2}100%{transform:scale(1) rotate(-6deg);opacity:1}}
+.slot.on{transform:rotate(-6deg)}
+.pp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px}
+.pp i{display:block;aspect-ratio:1;border-radius:50%;border:2px dashed var(--line)}
+.pp i.on{border:2px solid var(--ink-stamp);background:var(--soft-coral)}
+.pp span{font-size:11.5px;text-align:center;color:var(--muted);display:block;line-height:1.2;margin-top:3px}
+
+/* bars */
+.stack{display:flex;height:34px;border-radius:10px;overflow:hidden;margin-top:12px;border:1.5px solid var(--line)}
+.stack i{display:block;height:100%}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;margin-top:10px;font-size:14px}
+.legend span{display:flex;gap:8px;align-items:center}
+.legend span i{width:12px;height:12px;border-radius:3px;flex:none}
+.legend b{margin-left:auto;font-variant-numeric:tabular-nums}
+.hbar{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) 70px;gap:10px;align-items:center;margin-top:8px;font-size:14px}
+.hbar .t{height:14px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.hbar .t i{display:block;height:100%;background:var(--green);border-radius:99px}
+.hbar b{text-align:right;font-variant-numeric:tabular-nums}
+.cols{display:flex;align-items:flex-end;gap:22px;height:240px;margin-top:14px;padding:16px 16px 0;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.cgrp{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;min-width:0}
+.cpair{display:flex;gap:8px;align-items:flex-end;height:100%;width:100%;justify-content:center;padding-top:4px}
+.cbar{width:min(46px,40%);border-radius:7px 7px 0 0;position:relative;min-height:2px}
+.cbar em{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:12px;font-style:normal;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.clab{font-size:13px;color:var(--muted);padding:8px 0;text-align:center}
+.scn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.scn button{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:10px;text-align:left}
+.scn button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.scn b{display:block;font-family:var(--font-display);font-size:17px;color:var(--forest)}
+.scn span{font-size:13px;color:var(--muted)}
+.big{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.big div{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px}
+.big b{display:block;font-family:var(--font-display);font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
+.big span{font-size:13.5px;color:var(--muted)}
+.neg{color:var(--coral)}
+.track{position:relative;height:14px;border-radius:99px;background:var(--surface-2);margin:34px 0 28px;border:1.5px solid var(--line)}
+.track .fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,var(--coral) 0 var(--be),var(--green) var(--be) 100%)}
+.mk{position:absolute;top:-8px;width:2px;height:28px;background:var(--fg)}
+.mk span{position:absolute;white-space:nowrap;font-size:12px;transform:translateX(-50%)}
+.mk.up span{top:-22px}.mk.dn span{top:30px}
+
+/* flow */
+.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;margin-top:14px}
+.flow .st{flex:1 1 130px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:14px;position:relative}
+.flow .st b{display:block;font-family:var(--font-display);font-size:17px;color:var(--forest);line-height:1.2;margin-bottom:2px}
+.flow .st+.st::before{content:"→";position:absolute;left:-12px;top:50%;transform:translateY(-50%);color:var(--green);font-weight:700;background:var(--bg);border-radius:50%;z-index:2;width:18px;text-align:center}
+.tl{border-left:3px dashed var(--line);margin:14px 0 0 10px;padding-left:22px;display:grid;gap:14px}
+.tl .it{position:relative}
+.tl .it::before{content:"";position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--green);border:3px solid var(--bg)}
+.tl .it b{font-family:var(--font-display);font-size:18px;color:var(--forest)}
+.tl .it small{color:var(--muted);display:block;font-size:13px}
+
+/* pouch */
+.mix{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:18px;align-items:center}
+.ing{display:flex;flex-wrap:wrap;gap:8px}
+.ing button{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px 6px 8px;font-size:14px}
+.ing button i{width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15)}
+.ing button[aria-pressed="true"]{background:var(--soft-green);border-color:var(--green);font-weight:600}
+.pouch{display:grid;place-items:center}
+.pouch svg{width:190px;height:auto}
+
+.shbtn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px}
+.shbtn:hover{background:var(--soft-green)}
+.shov{position:fixed;inset:0;z-index:50;background:rgba(15,22,12,.55);display:grid;place-items:center;padding:16px}
+.shdlg{width:min(480px,100%);background:var(--surface);color:var(--fg);border:1.5px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 60px -20px rgba(0,0,0,.5)}
+.shdlg h3{font-size:24px;margin-bottom:4px}
+.shrow{display:flex;gap:8px;margin-top:12px}
+.shrow input{flex:1;min-width:0;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);border-radius:10px;padding:9px 12px;font:inherit;font-size:14px}
+.shdlg textarea{width:100%;min-height:96px;margin-top:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;resize:vertical}
+.shact{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.shmsg{font-size:13.5px;color:var(--ink-stamp);min-height:20px;margin-top:8px;font-weight:600}
+.foot{border-top:1.5px solid var(--line);padding-block:30px 40px;color:var(--muted);font-size:14px}
+.foot .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+[hidden]{display:none!important}
+
+@media (max-width:900px){
+  .hero .wrap,.mascot-show{grid-template-columns:minmax(0,1fr)}
+  .hero-art{order:-1;max-width:360px;margin:0 auto}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shell{grid-template-columns:minmax(0,1fr);gap:16px;padding-top:12px}
+  .side{position:static;max-height:none;overflow:visible}
+  .side details{border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:0 12px}
+  .side details>summary{display:block;padding:12px 0;font-weight:600;cursor:pointer}
+  .side details:not([open])>div{display:none}
+}
+@media (max-width:600px){
+  .g2,.g3,.g4,.big,.scn,.legend{grid-template-columns:minmax(0,1fr)}
+  .g4.keep2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prog .lbl{display:none}
+  .lesson-row{grid-template-columns:44px minmax(0,1fr)}
+  .lesson-row .m{display:none}
+  .detail,.mix{grid-template-columns:minmax(0,1fr)}
+  .slot{margin:0 auto}
+  .hbar{grid-template-columns:minmax(0,1fr) 62px}
+  .hbar .t{grid-column:1/-1;order:3}
+  .cols{gap:10px;padding-inline:8px}
+  .cbar{width:44%}
+  .say{grid-template-columns:44px minmax(0,1fr)}.say img{width:44px;height:44px}
+  .circ{gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" data-go="home" aria-label="Về trang chủ">
+      <img src="img/front.jpg" alt="Lạc Lạc">
+      <span><b>Lạc Lạc</b><small>Sứ giả cội nguồn</small></span>
+    </a>
+    <span class="spacer"></span>
+    <div class="prog" id="prog" aria-live="polite"></div>
+    <button class="shbtn" id="shopen" type="button" aria-haspopup="dialog">Chia sẻ</button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b style="font-family:var(--font-display);color:var(--forest)">Hộ Chiếu Cội Nguồn</b><br>Khắc ấn Đất Tổ, đánh thức ngàn năm.</div>
+    <div>Đội Đất Tổ GenZ · Đại học Hùng Vương · Phú Thọ<br>Cuộc thi Sinh viên Kinh doanh số 2026 · Bản mô tả vòng sơ loại</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var IMG={front:'img/front.jpg',side:'img/side.jpg',back:'img/back.jpg',eye:'img/eye.jpg',drum:'img/drum.jpg',passport:'img/passport.jpg',stamp:'img/stamp.jpg'};
+
+/* ---------- parts & lessons ---------- */
+var PARTS=[
+ {n:1,name:'Cổng nguồn',sub:'Làm quen với dự án'},
+ {n:2,name:'Đền Hạ',sub:'Khách hàng và sản phẩm'},
+ {n:3,name:'Đền Trung',sub:'Trải nghiệm tại điểm đến'},
+ {n:4,name:'Đền Thượng',sub:'Công nghệ và điểm khác biệt'},
+ {n:5,name:'Lăng Vua Hùng',sub:'Bài toán kinh doanh'},
+ {n:6,name:'Đền Giếng',sub:'Lan tỏa và đi xa'}
+];
+function bubble(t){return '<div class="say"><img src="'+IMG.front+'" alt=""><div><b>Lạc Lạc nhắn</b><p>'+t+'</p></div></div>';}
+function tbl(head,rows,opt){opt=opt||{};
+  return '<div class="tbl"><table><thead><tr>'+head.map(function(h,i){return '<th'+((opt.num||[]).indexOf(i)>-1?' class="num"':'')+'>'+h+'</th>';}).join('')+'</tr></thead><tbody>'+
+  rows.map(function(r,ri){return '<tr'+((opt.total===ri)?' class="total"':'')+'>'+r.map(function(c,i){return '<td'+((opt.num||[]).indexOf(i)>-1?' class="num"':'')+'>'+c+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';}
+function stampSVG(label,num,on){
+  var c=on?'var(--ink-stamp)':'var(--muted)';
+  return '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="'+c+'" stroke-width="3"/><circle cx="50" cy="50" r="37" fill="none" stroke="'+c+'" stroke-width="1.2" stroke-dasharray="3 3"/>'+
+  '<text x="50" y="44" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="26" fill="'+c+'">'+num+'</text>'+
+  '<text x="50" y="62" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="700" font-size="9.5" fill="'+c+'">'+label+'</text></svg>';}
+
+var L=[];
+function lesson(o){L.push(o);}
+
+/* L00 */
+lesson({part:1,min:3,title:'Gặp Lạc Lạc, sứ giả cội nguồn',sum:'Chú chim Lạc nhỏ bé đồng hành cùng dự án.',
+ html:function(){return ''+
+ '<p class="lede">Lạc Lạc là chú chim Lạc nhỏ bé, mang theo câu chuyện cội nguồn và những hành trình khám phá Việt Nam. Bạn ấy là gương mặt đại diện của Hộ Chiếu Cội Nguồn.</p>'+
+ '<div class="viewer" style="margin-top:20px" id="v0"><div class="frame"><img id="v0img" src="'+IMG.front+'" alt="Lạc Lạc nhìn từ phía trước"></div>'+
+ '<div class="seg" role="group" aria-label="Chọn góc nhìn"><button aria-pressed="true" data-v="front">Mặt trước</button><button aria-pressed="false" data-v="side">Mặt bên</button><button aria-pressed="false" data-v="back">Mặt sau</button></div></div>'+
+ bubble('Mình cao khoảng 10 cm, làm bằng len nhung mềm, không xù lông. Bụng mình thêu họa tiết trống đồng, và mình luôn mang theo một cuốn hộ chiếu mini.')+
+ '<h2>Chi tiết sản phẩm</h2>'+
+ '<div class="circ"><figure><img src="'+IMG.eye+'" alt="Mắt nhựa và mỏ của Lạc Lạc"><figcaption>Mắt nhựa an toàn, biểu cảm dễ thương</figcaption></figure>'+
+ '<figure><img src="'+IMG.drum+'" alt="Họa tiết trống đồng thêu trên bụng"><figcaption>Họa tiết trống đồng được thêu tinh tế</figcaption></figure>'+
+ '<figure><img src="'+IMG.passport+'" alt="Hộ chiếu mini đeo chéo"><figcaption>Phụ kiện hộ chiếu mini đồng hành mọi hành trình</figcaption></figure></div>'+
+ '<h2>Chất liệu và màu sắc</h2>'+
+ '<div class="swatches">'+
+ '<div class="sw"><i style="background:#F3E8D0"></i><div><b>Kem</b><span>Len nhung mềm mại, không xù lông</span></div></div>'+
+ '<div class="sw"><i style="background:#7A9B4C"></i><div><b>Xanh ngọc chủ đạo</b><span>Dễ sản xuất, ít đổi màu</span></div></div>'+
+ '<div class="sw"><i style="background:#D9483E"></i><div><b>Đỏ coral</b><span>Tạo điểm nhấn</span></div></div>'+
+ '<div class="sw"><i style="background:#E8B33C"></i><div><b>Vàng nhạt</b><span>Màu mào chim</span></div></div></div>'+
+ '<ul><li>Thiết kế tối giản, dễ gia công.</li><li>Len nhung an toàn, thân thiện môi trường.</li><li>Món quà ý nghĩa cho Gen Z, để sưu tầm và đồng hành cùng hành trình khám phá văn hóa Việt Nam.</li></ul>'+
+ '<h2>Dự án trong một câu</h2>'+
+ '<div class="card" style="margin-top:10px"><p><b>Hộ Chiếu Cội Nguồn</b> là minitour du lịch trải nghiệm, kết nối di sản Đền Hùng với sản phẩm truyền thống và sản phẩm OCOP của vùng Đất Tổ Phú Thọ.</p>'+
+ '<p style="margin-top:10px;font-family:var(--font-display);font-size:22px;color:var(--coral);font-weight:700">“Khắc ấn Đất Tổ – Đánh thức ngàn năm.”</p></div>'+
+ tbl(['Mục','Nội dung'],[
+  ['Lĩnh vực','Du lịch văn hóa trải nghiệm; thương mại điện tử sản phẩm địa phương; quà lưu niệm sáng tạo'],
+  ['Địa bàn ban đầu','Khu di tích lịch sử Đền Hùng, tỉnh Phú Thọ'],
+  ['Khách hàng mục tiêu','Gen Z và các gia đình nhỏ có con đang tuổi đi học'],
+  ['Giá trị cốt lõi','Biến chuyến tham quan thành một cuộc phiêu lưu có nhiệm vụ, có phần thưởng và có kỷ niệm để sưu tầm; lan tỏa đạo lý “Uống nước nhớ nguồn”; tạo đầu ra cho sản phẩm của người dân địa phương']
+ ]);},
+ init:function(r){var img=r.querySelector('#v0img');r.querySelectorAll('[data-v]').forEach(function(b){b.addEventListener('click',function(){
+   r.querySelectorAll('[data-v]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+   img.src=IMG[b.dataset.v];img.alt='Lạc Lạc, '+b.textContent.toLowerCase();});});}
+});
+
+/* L01 */
+lesson({part:1,min:4,title:'Vì sao cần một cuốn hộ chiếu',sum:'Bối cảnh, vấn đề và cách dự án giải quyết.',
+ html:function(){return ''+
+ '<p class="lede">Nhiều bạn trẻ và gia đình đến Đền Hùng chỉ “đi, dâng hương, chụp ảnh, về”. Trải nghiệm thiếu điểm nhấn để ghi nhớ và chia sẻ, trong khi sản phẩm làng nghề chưa có kênh tiếp cận khách trẻ.</p>'+
+ bubble('Phú Thọ là vùng Đất Tổ, nơi tín ngưỡng thờ cúng Hùng Vương được UNESCO ghi danh. Mình muốn mỗi người đi qua đây đều mang về một câu chuyện.')+
+ '<h2>Bốn điều đang diễn ra</h2>'+
+ '<div class="grid g2" style="margin-top:12px">'+
+ '<div class="card"><h3>Di sản phong phú, cách tiếp cận truyền thống</h3><p>Quần thể Đền Hùng có nhiều điểm di tích với nội dung và truyền thuyết riêng, nhưng chủ yếu được giới thiệu bằng biển chỉ dẫn và thuyết minh theo đoàn, khó giữ sự chú ý của người trẻ.</p></div>'+
+ '<div class="card"><h3>Hành vi du lịch của giới trẻ đã đổi</h3><p>Gen Z thích trải nghiệm có tương tác, có thử thách, có thứ để sưu tầm và có hình đẹp để chia sẻ. Mô hình “hộ chiếu, đóng dấu” đã quen thuộc với nhóm này.</p></div>'+
+ '<div class="card"><h3>Gia đình cần hoạt động vừa học vừa chơi</h3><p>Cha mẹ muốn con hiểu lịch sử dân tộc, nhưng trẻ dễ chán khi chỉ nghe giảng. Một trò chơi nhiệm vụ giúp cả nhà cùng tham gia.</p></div>'+
+ '<div class="card"><h3>Sản phẩm địa phương thiếu kênh đầu ra</h3><p>Nón lá, quạt lá cọ, chè, quế, bưởi, sả, gạo rang đều có sẵn nhưng ít được thiết kế thành quà lưu niệm hiện đại, dễ mua tại điểm đến.</p></div></div>'+
+ '<h2>Ai gặp vấn đề gì, dự án giúp thế nào</h2>'+
+ tbl(['Đối tượng','Vấn đề hiện tại','Cách dự án giải quyết'],[
+  ['<b>Du khách trẻ (Gen Z)</b>','Trải nghiệm đơn điệu, ít lý do ở lại lâu và chia sẻ','Hành trình nhiệm vụ 6 trạm, ấn mộc sưu tầm, standee check-in, hashtag'],
+  ['<b>Gia đình nhỏ</b>','Khó cuốn hút trẻ em; thiếu hoạt động chung cho cả nhà','Mini game, thử thách, kể chuyện văn hóa phù hợp lứa tuổi; quà đổi cuối hành trình'],
+  ['<b>Làng nghề, hợp tác xã OCOP</b>','Đầu ra phụ thuộc thương lái, ít tiếp cận khách trẻ, câu chuyện sản phẩm chưa được kể','Quà lưu niệm từ nguyên liệu địa phương; mã QR kể chuyện; website bán hàng'],
+  ['<b>Người dân địa phương</b>','Việc làm thời vụ, phụ thuộc mùa lễ hội','Việc làm khi làm quà, vận hành trạm, hướng dẫn; thu nhập đều hơn'],
+  ['<b>Cơ quan quản lý di tích</b>','Cần tăng sức hấp dẫn, giáo dục truyền thống cho người trẻ','Công cụ giáo dục mềm, không can thiệp vào không gian thờ tự, hỗ trợ truyền thông di sản']
+ ]);}
+});
+
+/* L02 */
+lesson({part:2,min:3,title:'Hai chân dung khách hàng',sum:'Bạn trẻ khám phá và gia đình cùng khám phá.',
+ html:function(){return ''+
+ '<p class="lede">Dự án nhắm tới hai nhóm chính, cùng hai nhóm mở rộng để bán đều quanh năm.</p>'+
+ '<div class="grid g2" style="margin-top:18px">'+
+ '<div class="card"><span class="pill lo">16 đến 28 tuổi</span><h3 style="margin-top:8px">Bạn trẻ khám phá</h3><p>Học sinh THPT, sinh viên, người đi làm trẻ, thường đi theo nhóm bạn. Dùng TikTok, Facebook, Instagram; thích địa điểm “có chuyện để kể” và vật phẩm “có thể khoe”.</p><p><b>Chọn dự án vì:</b> trải nghiệm vui, ngân sách thấp, có sản phẩm sưu tầm đẹp.</p></div>'+
+ '<div class="card"><span class="pill mid">Cha mẹ 28 đến 45, con 6 đến 15 tuổi</span><h3 style="margin-top:8px">Gia đình cùng khám phá</h3><p>Mong chuyến đi vừa giáo dục vừa vui chơi.</p><p><b>Chọn dự án vì:</b> an toàn, dễ tham gia, con thích thú, có quà mang về làm kỷ niệm.</p></div></div>'+
+ '<h2>Nhóm mở rộng</h2>'+
+ '<div class="grid g3" style="margin-top:12px"><div class="card"><h3>Đoàn học sinh</h3><p>Hoạt động ngoại khóa.</p></div><div class="card"><h3>Doanh nghiệp</h3><p>Team building, tri ân.</p></div><div class="card"><h3>Người mua quà online</h3><p>Gửi người thân xa quê.</p></div></div>'+
+ bubble('Mình đi cùng cả hai nhóm. Với các bạn trẻ, mình là món để sưu tầm và khoe. Với gia đình, mình là bạn đồng hành của các em nhỏ.')+
+ '<h2>Vì sao họ chọn Hộ Chiếu Cội Nguồn</h2>'+
+ '<ul><li><b>Mục tiêu rõ ràng:</b> hoàn thành sáu ấn mộc thay vì đi tự do không định hướng.</li>'+
+ '<li><b>Có tính sưu tầm:</b> hộ chiếu là kỷ vật, mỗi ấn mộc là một dấu ấn chuyến đi.</li>'+
+ '<li><b>Chi phí thấp:</b> dự kiến 49.000 đồng một cuốn, so với tour trọn gói hay thuê hướng dẫn viên riêng.</li>'+
+ '<li><b>Quà mang bản sắc Đất Tổ:</b> có câu chuyện, có thể tự chọn và phối hương liệu.</li>'+
+ '<li><b>Nội dung đúng ngôn ngữ người trẻ,</b> nhưng vẫn giữ sự trang trọng với không gian linh thiêng.</li></ul>';}
+});
+
+/* L03 */
+lesson({part:2,min:4,title:'Cuốn hộ chiếu và bộ ấn mộc',sum:'Thiết kế chi tiết của sản phẩm chính.',
+ html:function(){return ''+
+ '<p class="lede">Một cuốn hộ chiếu giấy thiết kế theo phong cách du lịch quốc tế, in họa tiết trống đồng, phong cảnh và di sản tiêu biểu của Phú Thọ.</p>'+
+ '<div style="display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:18px;align-items:center;margin-top:18px"><img src="'+IMG.stamp+'" alt="Tem Hộ Chiếu Cội Nguồn" style="width:100%;border-radius:12px;border:1.5px solid var(--line)"><div class="card"><h3>Khổ nhỏ gọn, khoảng 10 × 14 cm</h3><p>Bìa cứng hoặc bìa giấy mỹ thuật, in họa tiết trống đồng, hoa văn Đất Tổ và dòng chữ “Hộ chiếu cội nguồn”.</p></div></div>'+
+ '<h2>Bên trong cuốn hộ chiếu</h2>'+
+ '<div class="grid g2" style="margin-top:10px">'+
+ '<div class="card"><h3>Trang thông tin cá nhân</h3><p>Tên, ngày tham quan, hình dán.</p></div>'+
+ '<div class="card"><h3>Trang giới thiệu hành trình</h3><p>Tổng quan 6 trạm và luật chơi.</p></div>'+
+ '<div class="card"><h3>6 trang theo 6 trạm</h3><p>Mỗi trang có một tranh minh họa nhẹ, một câu chuyện ngắn và một ô trống dành cho ấn mộc.</p></div>'+
+ '<div class="card"><h3>Trang hoàn thành và ghi chú</h3><p>Ghi nhận hoàn thành và chỗ viết cảm nhận.</p></div></div>'+
+ '<p style="margin-top:12px">Mỗi hộ chiếu đi kèm một bản đồ hành trình gấp gọn chỉ rõ vị trí các trạm.</p>'+
+ '<h2>Ấn mộc</h2>'+
+ '<ul><li>Mỗi trạm có một con dấu riêng, khắc biểu tượng của trạm, ví dụ bọc trăm trứng ở Đền Hạ, bánh chưng bánh giầy ở Đền Trung.</li>'+
+ '<li>Dùng mực an toàn, thơm nhẹ, khô nhanh.</li>'+
+ '<li>Đặt trong hộp gỗ có khóa để chống mất.</li>'+
+ '<li>Ấn “Cổng đền” được tặng ngay khi nhận hộ chiếu, tạo cảm giác “đã xuất phát”.</li></ul>'+
+ bubble('Nhìn bụng mình có hình trống đồng không? Cuốn hộ chiếu cũng mang họa tiết đó, nên chúng mình là một bộ.');}
+});
+
+/* L04 */
+var ST=[
+ {n:1,s:'Cổng nguồn',t:'Cổng nguồn (khởi hành)',a:'Mua “Hộ chiếu cội nguồn”, nhận bản đồ, nghe hướng dẫn luật chơi 1 phút (có mã QR xem video giới thiệu).',r:'Ấn mộc “Cổng đền”, tặng ngay khi nhận hộ chiếu'},
+ {n:2,s:'Đền Hạ',t:'Đền Hạ',a:'Thử thách giải câu đố hoặc ghép hình liên quan truyền thuyết Âu Cơ, Lạc Long Quân và bọc trăm trứng.',r:'Ấn mộc Đền Hạ'},
+ {n:3,s:'Đền Trung',t:'Đền Trung',a:'Mini game về Đất Tổ: trả lời câu hỏi nhanh, ghép sản vật Đất Tổ (bánh chưng, bánh giầy, chè, bưởi…) vào đúng vị trí.',r:'Ấn mộc Đền Trung'},
+ {n:4,s:'Đền Thượng',t:'Đền Thượng',a:'Kể chuyện văn hóa: nghe hoặc đọc các câu chuyện ngắn về thời Hùng Vương, trả lời một câu hỏi cảm nhận.',r:'Ấn mộc Đền Thượng'},
+ {n:5,s:'Lăng Vua Hùng',t:'Lăng Vua Hùng',a:'Dừng chân tưởng niệm; viết hoặc dán lời nguyện “nhớ nguồn” lên bảng tâm nguyện (đề xuất, không bắt buộc).',r:'Ấn mộc Lăng Vua Hùng'},
+ {n:6,s:'Đền Giếng',t:'Đền Giếng (trạm cuối)',a:'Đóng ấn mộc cuối, xác nhận hoàn thành, đổi quà lưu niệm.',r:'Ấn mộc Đền Giếng và quà đổi thưởng'}
+];
+lesson({part:3,min:5,title:'Hành trình 6 trạm',sum:'Thử đóng ấn mộc từng trạm ngay trên trang.',
+ html:function(){return ''+
+ '<p class="lede">Du khách đi qua 6 trạm: Cổng đền, Đền Hạ, Đền Trung, Đền Thượng, Lăng Vua Hùng, Đền Giếng. Mỗi trạm có một thử thách, mini game hoặc câu chuyện văn hóa, và một ấn mộc riêng.</p>'+
+ '<div class="card" style="margin-top:18px" id="rt"><div class="eyebrow">Chọn một trạm</div>'+
+ '<div class="route" role="group" aria-label="Sáu trạm">'+ST.map(function(s,i){return '<button class="stop" data-i="'+i+'" aria-pressed="'+(i===0)+'"><span class="bub">'+s.n+'</span>'+s.s+'</button>';}).join('')+'</div>'+
+ '<div class="detail"><div><h3 id="rt-t"></h3><p id="rt-a"></p><p style="margin-top:8px"><b>Phần thưởng:</b> <span id="rt-r"></span></p><p class="note" style="margin-top:12px">Bấm vào con dấu để đóng ấn vào hộ chiếu của bạn.</p></div>'+
+ '<button class="slot" id="rt-slot" aria-label="Đóng ấn mộc"></button></div>'+
+ '<div class="pp" id="rt-pp"></div><p id="rt-msg" style="margin-top:12px;font-weight:600;color:var(--ink-stamp)" aria-live="polite"></p></div>'+
+ '<p class="note">Nội dung các trạm là thiết kế đề xuất của nhóm, sẽ được thẩm định lại với Ban quản lý Khu di tích để bảo đảm chính xác về lịch sử và phù hợp không gian thờ tự.</p>'+
+ '<h2>Một chuyến đi của du khách</h2>'+
+ '<div class="tl">'+
+ '<div class="it"><b>Đến Cổng nguồn</b><p>Mua hộ chiếu tại quầy hoặc đặt trước qua mạng.</p></div>'+
+ '<div class="it"><b>Nhận bản đồ và luật chơi</b><p>Có quà khởi hành nếu có.</p></div>'+
+ '<div class="it"><b>Đi qua các trạm</b><p>Làm nhiệm vụ và nhận ấn mộc.</p></div>'+
+ '<div class="it"><b>Check-in</b><p>Chụp ảnh tại standee, đăng mạng xã hội kèm hashtag.</p></div>'+
+ '<div class="it"><b>Đến Đền Giếng</b><p>Đóng ấn mộc cuối, đổi quà.</p></div>'+
+ '<div class="it"><b>Quét QR trên quà</b><p>Xem câu chuyện sản phẩm; vào website để mua thêm hoặc gửi quà tặng.</p></div></div>'+
+ bubble('Mình sẽ chờ bạn ở trạm cuối. Hộ chiếu không giới hạn thời hạn, nên nếu trời mưa bạn có thể quay lại hoàn thành sau.');},
+ init:function(r){
+   var cur=0,got=[false,false,false,false,false,false];
+   var t=r.querySelector('#rt-t'),a=r.querySelector('#rt-a'),rr=r.querySelector('#rt-r'),slot=r.querySelector('#rt-slot'),pp=r.querySelector('#rt-pp'),msg=r.querySelector('#rt-msg');
+   function draw(){
+     var s=ST[cur];t.textContent='Trạm '+s.n+' · '+s.t;a.textContent=s.a;rr.textContent=s.r;
+     slot.className='slot'+(got[cur]?' on':'');slot.innerHTML=stampSVG(s.s.toUpperCase(),s.n,got[cur]);
+     r.querySelectorAll('.stop').forEach(function(b,i){b.setAttribute('aria-pressed',String(i===cur));b.classList.toggle('stamped',got[i]);});
+     pp.innerHTML=ST.map(function(x,i){return '<div><i class="'+(got[i]?'on':'')+'"></i><span>'+x.s+'</span></div>';}).join('');
+     var c=got.filter(Boolean).length;
+     msg.textContent=c===6?'Đủ 6 ấn mộc! Bạn có thể đổi quà lưu niệm ở Đền Giếng.':(c?('Đã có '+c+'/6 ấn mộc.'):'');
+   }
+   r.querySelectorAll('.stop').forEach(function(b){b.addEventListener('click',function(){cur=+b.dataset.i;draw();});});
+   slot.addEventListener('click',function(){got[cur]=!got[cur];draw();});
+   draw();}
+});
+
+/* L05 */
+var ING=[['Chè khô','#7B8B3A'],['Quế khô','#8A5535'],['Hoa bưởi','#F4F0E2'],['Vỏ bưởi khô','#D8B85A'],['Sả khô','#B9B77A'],['Gạo rang','#E6CF98'],['Hoa nhài','#FFFFFF'],['Cánh hoa cúc','#F1C43C']];
+lesson({part:3,min:4,title:'Quà lưu niệm và túi hương tự phối',sum:'Mỗi du khách mang về một sản phẩm khác nhau.',
+ html:function(){return ''+
+ '<p class="lede">Hoàn thành đủ ấn mộc, du khách đổi quà lưu niệm làm từ nguyên liệu và nghệ nhân Phú Thọ.</p>'+
+ '<div class="grid g2" style="margin-top:16px">'+
+ '<div class="card"><h3>Nón lá có sticker</h3><p>Du khách tự trang trí, tạo sản phẩm riêng của mỗi người.</p></div>'+
+ '<div class="card"><h3>Quạt lá cọ</h3><p>Hình ảnh quen thuộc của vùng đồi cọ Phú Thọ.</p></div>'+
+ '<div class="card"><h3>Móc khóa theo trạm</h3><p>Thiết kế theo biểu tượng các trạm, sưu tầm theo bộ.</p></div>'+
+ '<div class="card"><h3>Túi hương</h3><p>In họa tiết, biểu tượng thời Hùng Vương; khách tự chọn và phối hương liệu.</p></div></div>'+
+ '<p style="margin-top:12px">Ngoài ra, <b>standee chụp ảnh check-in</b> theo chủ đề Đất Tổ được đặt tại các trạm để tăng chia sẻ trên mạng xã hội.</p>'+
+ '<h2>Thử phối túi hương</h2>'+
+ '<div class="card" style="margin-top:10px"><p style="color:var(--muted);font-size:14.5px">Chọn các hương liệu bạn muốn. Với 8 loại, có 255 cách phối nếu chọn ít nhất một loại.</p>'+
+ '<div class="mix" style="margin-top:14px"><div><div class="ing" id="ing">'+ING.map(function(x,i){return '<button data-i="'+i+'" aria-pressed="false"><i style="background:'+x[1]+'"></i>'+x[0]+'</button>';}).join('')+'</div>'+
+ '<p id="mixout" style="margin-top:14px;font-weight:600" aria-live="polite"></p><button class="btn ghost small" id="mixclr" style="margin-top:10px">Chọn lại</button></div>'+
+ '<div class="pouch"><svg viewBox="0 0 200 230" id="pouch" role="img" aria-label="Túi hương"></svg></div></div></div>'+
+ bubble('Mình thích túi hương nhất. Mỗi túi một mùi, nên không có hai du khách nào mang về cùng một món quà.')+
+ '<h2>Nguồn nguyên liệu</h2><p>Lá cọ, lá nón, chè, quế, bưởi, sả, gạo, hoa nhài, hoa cúc đều là sản vật Phú Thọ hoặc vùng lân cận, có thể ký hợp đồng thu mua trực tiếp với hộ dân, tổ hợp tác, hợp tác xã.</p>';},
+ init:function(r){
+   var on={};var out=r.querySelector('#mixout'),sv=r.querySelector('#pouch');
+   function draw(){
+     var ks=Object.keys(on).map(Number).sort();
+     out.textContent=ks.length?('Túi của bạn: '+ks.map(function(i){return ING[i][0].toLowerCase();}).join(', ')+'.'):'Chưa chọn hương liệu nào.';
+     var dots=ks.map(function(i,j){var cx=100+Math.cos(j*2.399)*Math.sqrt(j+.5)*20,cy=150+Math.sin(j*2.399)*Math.sqrt(j+.5)*16;return '<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="9" fill="'+ING[i][1]+'" stroke="rgba(0,0,0,.25)"/>';}).join('');
+     sv.innerHTML='<path d="M40 70 Q100 40 160 70 L172 205 Q100 225 28 205 Z" fill="var(--soft-green)" stroke="var(--green)" stroke-width="3"/><path d="M40 70 Q100 100 160 70" fill="none" stroke="var(--green)" stroke-width="3"/><path d="M70 62 Q100 20 130 62" fill="none" stroke="var(--coral)" stroke-width="4"/><circle cx="100" cy="112" r="18" fill="none" stroke="var(--gold)" stroke-width="2.5"/><circle cx="100" cy="112" r="8" fill="var(--gold)"/>'+dots;
+     r.querySelectorAll('#ing button').forEach(function(b){b.setAttribute('aria-pressed',String(!!on[b.dataset.i]));});}
+   r.querySelectorAll('#ing button').forEach(function(b){b.addEventListener('click',function(){var i=b.dataset.i;if(on[i])delete on[i];else on[i]=1;draw();});});
+   r.querySelector('#mixclr').addEventListener('click',function(){on={};draw();});
+   draw();}
+});
+
+/* L06 */
+lesson({part:4,min:3,title:'Mã QR, website và công nghệ',sum:'Biến sản phẩm vật lý thành cánh cửa vào câu chuyện.',
+ html:function(){return ''+
+ '<p class="lede">Công nghệ dùng ở đây đều phổ thông, chi phí vừa phải, vận hành được bằng nhân sự không chuyên kỹ thuật.</p>'+
+ '<div class="flow"><div class="st"><b>Quét QR</b>Trên hộ chiếu, bản đồ và sản phẩm</div><div class="st"><b>Xem câu chuyện</b>Video về di tích, làng nghề, sản phẩm</div><div class="st"><b>Mua hàng</b>Website, Shopee, TikTok Shop, Zalo</div><div class="st"><b>Quay lại</b>Tích điểm, ưu đãi</div></div>'+
+ '<h2>Ba lớp công nghệ</h2>'+
+ '<div class="grid g3" style="margin-top:10px">'+
+ '<div class="card"><h3>Mã QR</h3><p>Dẫn tới video và câu chuyện về sản phẩm, di tích và làng nghề lâu đời của Đất Tổ.</p></div>'+
+ '<div class="card"><h3>Website</h3><p>Bán sản phẩm thủ công, đồ lưu niệm và OCOP của Phú Thọ; nhận đặt hộ chiếu trước; có thể tích hợp thanh toán điện tử.</p></div>'+
+ '<div class="card"><h3>Mạng xã hội</h3><p>TikTok, Facebook, Zalo làm kênh truyền thông và chăm sóc khách hàng.</p></div></div>'+
+ '<p style="margin-top:14px">Mỗi hộ chiếu có thể có mã định danh hoặc mã QR riêng để sau này tích điểm, ưu đãi khi quay lại hoặc mua trên website.</p>'+
+ '<h2>Định hướng phát triển</h2>'+
+ '<ul><li><b>Hộ chiếu số:</b> đóng dấu bằng cách quét QR tại trạm.</li><li><b>Bảng xếp hạng</b> người chơi.</li><li><b>Tích điểm đổi quà.</b></li></ul>'+
+ bubble('Quét mã trên túi mình, bạn sẽ thấy người làm ra mình là ai và làng nghề của họ nằm ở đâu.');}
+});
+
+/* L07 */
+lesson({part:4,min:4,title:'Bảy điểm khác biệt',sum:'Vì sao khó sao chép Hộ Chiếu Cội Nguồn.',
+ html:function(){
+  var D=[['Trò chơi hóa di sản','Mỗi trạm là một màn chơi có thử thách riêng; ấn mộc như huy hiệu thành tích.'],
+  ['Nội dung vùng Đất Tổ','Họa tiết, câu chuyện, câu hỏi đều xoay quanh truyền thuyết, di tích và sản vật Phú Thọ.'],
+  ['Quà tặng tự phối','Túi hương tự chọn hương liệu; nón lá tự trang trí sticker.'],
+  ['Kết nối sản phẩm với câu chuyện','Mã QR dẫn tới video, giúp du khách hiểu giá trị sản phẩm trước khi mua.'],
+  ['Hệ sinh thái khép kín','Trải nghiệm, quà lưu niệm, website bán hàng, rồi quay lại điểm đến.'],
+  ['Tác động địa phương trực tiếp','Nguyên liệu và nhân công ưu tiên người dân Phú Thọ.'],
+  ['Thiết kế cho Gen Z và gia đình nhỏ','Ngôn ngữ trẻ trung, hình ảnh bắt mắt, dễ chụp ảnh chia sẻ, giá dễ chi trả.']];
+  return ''+
+ '<p class="lede">Theo tìm hiểu của nhóm, hiện chưa có sản phẩm du lịch nào tại Phú Thọ kết hợp đồng thời hộ chiếu, ấn mộc, thử thách và quà tặng OCOP trong một hành trình xuyên suốt tại Đền Hùng.</p>'+
+ '<div class="grid g2" style="margin-top:16px">'+D.map(function(d,i){return '<div class="card"><span class="pill lo">Điểm '+(i+1)+'</span><h3 style="margin-top:8px">'+d[0]+'</h3><p>'+d[1]+'</p></div>';}).join('')+'</div>'+
+ '<h2>Khó bắt chước ở đâu</h2><p>Đối thủ có thể in một cuốn hộ chiếu tương tự, nhưng khó sao chép được sự hợp tác với di tích, mạng lưới nghệ nhân và hợp tác xã OCOP, kho nội dung câu chuyện đã được thẩm định, bộ nhận diện thương hiệu và cộng đồng người sưu tầm. Nhóm sẽ đăng ký bảo hộ nhãn hiệu “Hộ chiếu cội nguồn” và bản quyền thiết kế hộ chiếu, bộ ấn mộc, hệ thống họa tiết.</p>'+
+ '<h2>Thân thiện với di sản và môi trường</h2><ul><li>Ưu tiên giấy tái chế, mực in gốc thực vật, đóng gói tối giản.</li><li>Quà làm từ nguyên liệu tự nhiên như lá cọ, lá nón, hương liệu khô, dễ phân hủy.</li><li>Trạm đặt gọn, không đục khoan hay thay đổi cảnh quan, tuân thủ quy định của Ban quản lý.</li></ul>'+
+ bubble('Mình làm từ len nhung an toàn và thân thiện môi trường, nên mình cũng đi theo tinh thần này.');}
+});
+
+/* L08 */
+lesson({part:5,min:4,title:'Giá bán và mô hình kinh doanh',sum:'Bốn nguồn thu và vòng lặp giữ khách quay lại.',
+ html:function(){return ''+
+ '<p class="lede">Giá đặt ở mức vừa túi tiền với học sinh, sinh viên và gia đình, đồng thời bảo đảm biên lợi nhuận.</p>'+
+ tbl(['Sản phẩm','Giá bán dự kiến','Giá vốn ước tính','Biên gộp ước tính'],[
+  ['<b>Hộ chiếu cơ bản</b><br><small>kèm bản đồ, 6 ấn mộc, sticker hoặc móc khóa mini đổi thưởng</small>','49.000 đ','~12.000 đ','~37.000 đ/cuốn'],
+  ['<b>Gói “Cội nguồn”</b><br><small>hộ chiếu + túi hương + quà thủ công</small>','149.000 đ','~57.000 đ','~92.000 đ/gói'],
+  ['<b>Túi hương lẻ, quạt lá cọ, móc khóa</b>','25.000 đến 69.000 đ','40 đến 55% giá bán','45 đến 60% giá bán'],
+  ['<b>Gói đoàn trường học</b> (từ 30 em)','Giảm 10 đến 15% theo số lượng','–','Biên thấp hơn, bán số lượng lớn, ổn định']
+ ],{num:[]})+
+ '<p class="note">Số liệu giả định, sẽ cập nhật khi có báo giá thực tế.</p>'+
+ '<h2>Bốn nguồn thu</h2>'+
+ '<div class="grid g2" style="margin-top:10px"><div class="card"><h3>Bán hộ chiếu</h3><p>49.000 đồng một cuốn, tại Cổng nguồn và đặt trước trực tuyến.</p></div><div class="card"><h3>Nâng cấp gói quà</h3><p>Chênh lệch khoảng 100.000 đồng so với hộ chiếu cơ bản.</p></div><div class="card"><h3>Bán hàng trực tuyến</h3><p>Đồ lưu niệm, sản phẩm thủ công, OCOP qua website và sàn thương mại điện tử.</p></div><div class="card"><h3>Gói đoàn và hợp tác</h3><p>Đoàn học sinh, doanh nghiệp, công ty lữ hành; tài trợ, quảng cáo từ thương hiệu địa phương.</p></div></div>'+
+ '<h2>Vòng lặp giữ khách</h2>'+
+ '<div class="flow"><div class="st"><b>Trải nghiệm</b>6 trạm tại Đền Hùng</div><div class="st"><b>Quà lưu niệm</b>Đổi thưởng và mua thêm</div><div class="st"><b>Website</b>Mua online, gửi quà tặng</div><div class="st"><b>Quay lại</b>Hộ chiếu cũ được giảm giá</div></div>'+
+ '<h2>Kênh phân phối</h2><ul><li><b>Điểm bán trực tiếp:</b> quầy Cổng nguồn và cơ sở dịch vụ lân cận.</li><li><b>Trực tuyến:</b> website, fanpage, TikTok Shop, Shopee, Zalo; đặt trước theo khung giờ.</li><li><b>B2B:</b> trường học, công ty lữ hành, khách sạn, homestay tại Việt Trì và vùng lân cận.</li><li><b>Quà tặng OCOP:</b> bộ quà theo dịp lễ, Tết, tri ân doanh nghiệp.</li></ul>'+
+ '<h2>Khuyến mại</h2><ul><li><b>Đủ bộ:</b> hoàn thành 6 ấn mộc và đăng ảnh kèm hashtag được tặng thêm sticker hoặc phiếu giảm giá mua trực tuyến.</li><li><b>Quay lại:</b> mang hộ chiếu cũ trở lại để được giảm giá khi mua phiên bản mới hoặc mua trên website.</li><li><b>Ưu đãi sớm</b> khi đặt trước qua website; ưu đãi cho đoàn từ 30 người.</li></ul>';}
+});
+
+/* L09 */
+lesson({part:5,min:3,title:'Kế hoạch triển khai',sum:'Năm giai đoạn từ chuẩn bị đến vận hành.',
+ html:function(){return ''+
+ '<p class="lede">Chi phí đầu tư ban đầu tập trung vào thiết kế, in ấn, khắc ấn mộc, quầy trạm và website. Dự án không xây công trình cố định nên rủi ro đầu tư thấp.</p>'+
+ '<div class="tl">'+
+ '<div class="it"><small>Tháng 1 đến 2</small><b>1. Chuẩn bị</b><p>Khảo sát tuyến và nhu cầu; xin phép, ký thỏa thuận với Ban quản lý Khu di tích; thẩm định nội dung lịch sử; thiết kế hộ chiếu, ấn mộc, bản đồ; viết kịch bản thử thách.</p><p><b>Đầu ra:</b> thỏa thuận hợp tác, bộ thiết kế và kịch bản được duyệt.</p></div>'+
+ '<div class="it"><small>Tháng 2 đến 3</small><b>2. Sản xuất, thiết lập</b><p>In hộ chiếu, bản đồ, sticker; khắc ấn mộc; làm standee, quầy trạm; ký hợp đồng nghệ nhân, hợp tác xã; sản xuất quà; xây website và trang QR.</p><p><b>Đầu ra:</b> lô sản phẩm đầu tiên, 6 trạm sẵn sàng, website hoạt động.</p></div>'+
+ '<div class="it"><small>Tháng 4</small><b>3. Thử nghiệm</b><p>Chạy thử cuối tuần với 200 đến 300 khách; đào tạo nhân viên trạm; khảo sát mức hài lòng, thời gian hoàn thành, mức sẵn sàng chi trả.</p><p><b>Đầu ra:</b> báo cáo thử nghiệm, bản hoàn thiện.</p></div>'+
+ '<div class="it"><small>Từ tháng 5</small><b>4. Vận hành chính thức</b><p>Bán hộ chiếu tại Cổng nguồn; vận hành 6 trạm; bán trực tuyến; truyền thông; ký hợp đồng trường học, công ty lữ hành.</p><p><b>Đầu ra:</b> doanh thu đầu tiên, cơ sở dữ liệu khách hàng.</p></div>'+
+ '<div class="it"><small>Hằng quý</small><b>5. Đánh giá, cải tiến</b><p>Phân tích số liệu và phản hồi; cập nhật nội dung, quà; xử lý tồn kho.</p></div></div>'+
+ '<h2>Vận hành tại điểm đến</h2>'+
+ '<ul><li><b>Quầy Cổng nguồn:</b> bán hộ chiếu, phát bản đồ, giải đáp, bán combo quà; mở theo giờ của Khu di tích.</li><li><b>Trạm trên tuyến:</b> 1 đến 2 nhân viên hoặc tình nguyện viên mặc đồng phục, giữ ấn mộc, hướng dẫn thử thách; cao điểm bổ sung nhân sự thời vụ.</li><li><b>Đền Giếng:</b> xác nhận đủ ấn mộc, đổi quà, hướng dẫn quét QR và giới thiệu website.</li><li><b>Ứng xử:</b> giữ trang nghiêm, không làm ồn, không đặt hoạt động trong khu vực thờ tự chính nếu chưa được phép.</li><li><b>An toàn:</b> có người hỗ trợ trẻ nhỏ và người cao tuổi; bản đồ ghi rõ lối đi và điểm nghỉ.</li></ul>'+
+ '<h2>Chuỗi cung ứng và chất lượng</h2><p>Mỗi nguyên liệu có ít nhất hai nhà cung cấp để dự phòng. Nghệ nhân làm theo mẫu chuẩn; túi hương đóng gói theo định lượng; mỗi lô được kiểm tra độ khô, mùi, bao bì trước khi nhập kho. Kho nhỏ thuê tại Việt Trì; sản phẩm có nhãn mác, nguồn gốc, hạn sử dụng với hàng khô.</p>'+
+ bubble('Mình thích nhất là giai đoạn 3. Được chạy thử với 200 đến 300 bạn trước khi mở chính thức.');}
+});
+
+/* L10 */
+var RK=[
+ ['Chưa được cấp phép đặt trạm hoặc quy định tại di tích thay đổi','mid','Làm việc sớm với Ban quản lý; trạm linh hoạt, dễ tháo lắp; có phương án đặt tại khu dịch vụ lân cận.'],
+ ['Lượng khách thấp ngoài mùa lễ hội','mid','Bán gói đoàn trường học, team building; chương trình giáo dục truyền thống; ưu đãi cuối tuần; đẩy mạnh bán online.'],
+ ['Thời tiết xấu, đường trơn, khách giảm','mid','Phương án che chắn, rút gọn tuyến; hộ chiếu không giới hạn thời hạn để khách quay lại hoàn thành.'],
+ ['Quá tải tại trạm dịp cao điểm','mid','Thêm nhân sự thời vụ, quầy ấn mộc phụ, hướng dẫn luồng di chuyển, gói đặt trước theo khung giờ.'],
+ ['Nguồn nguyên liệu khan hiếm hoặc tăng giá theo mùa','lo','Hợp đồng dài hạn, dự trữ nguyên liệu khô, đa dạng nhà cung cấp.'],
+ ['Sao chép mô hình, thiết kế','lo','Đăng ký nhãn hiệu, bản quyền; xây quan hệ và cộng đồng riêng.'],
+ ['Mất ấn mộc, hỏng thiết bị','lo','Hộp khóa, ấn mộc dự phòng, kiểm kê đầu và cuối ngày.'],
+ ['Phản ánh tiêu cực về nội dung hoặc trải nghiệm','lo','Thẩm định nội dung với cơ quan quản lý; kênh tiếp nhận phản hồi; cập nhật nhanh.']
+];
+lesson({part:5,min:3,title:'Rủi ro và cách xử lý',sum:'Tám rủi ro và biện pháp ứng phó.',
+ html:function(){return ''+
+ '<p class="lede">Rủi ro lớn nhất là xin phép đặt trạm và tính mùa vụ. Cả hai đều có phương án dự phòng.</p>'+
+ '<div class="seg" role="group" aria-label="Lọc mức độ" id="rf"><button aria-pressed="true" data-f="all">Tất cả (8)</button><button aria-pressed="false" data-f="mid">Trung bình (4)</button><button aria-pressed="false" data-f="lo">Thấp (4)</button></div>'+
+ '<div id="rk" class="grid" style="margin-top:14px"></div>'+
+ '<h2>Thuận lợi và khó khăn</h2>'+
+ '<div class="card" style="margin-top:10px"><h3>Thuận lợi</h3><p>Lượng khách lớn quanh năm tại Đền Hùng, hàng triệu lượt mỗi năm; chính sách khuyến khích du lịch văn hóa và chương trình OCOP; nguyên liệu và nghệ nhân sẵn có; xu hướng du lịch trải nghiệm của giới trẻ.</p></div>'+
+ '<h3>Bốn khó khăn và cách khắc phục</h3>'+
+ tbl(['Khó khăn','Cách xử lý'],[
+  ['Cần phép của Ban quản lý để đặt trạm, tổ chức hoạt động','Làm việc sớm; trạm gọn, không ảnh hưởng cảnh quan, tôn trọng không gian thờ tự; đề nghị phê duyệt nội dung'],
+  ['Mùa vụ rõ rệt: cao điểm lễ hội, thấp điểm các tháng khác','Bán gói đoàn trường học, team building, ngoại khóa; thúc đẩy bán online quanh năm'],
+  ['Giữ chất lượng quà đồng đều khi số lượng lớn','Quy chuẩn hóa mẫu, kiểm tra đầu vào, hợp đồng nhiều nhà cung cấp'],
+  ['Nguy cơ bị sao chép ý tưởng “hộ chiếu, đóng dấu”','Đăng ký nhãn hiệu, bản quyền; xây cộng đồng và liên kết với di tích, làng nghề khó sao chép']
+ ]);},
+ init:function(r){
+   var box=r.querySelector('#rk');var lv={mid:'Trung bình',lo:'Thấp'};
+   function draw(f){box.innerHTML=RK.filter(function(x){return f==='all'||x[1]===f;}).map(function(x){return '<div class="card"><span class="pill '+x[1]+'">'+lv[x[1]]+'</span><h3 style="margin-top:8px;font-size:18px">'+x[0]+'</h3><p>'+x[2]+'</p></div>';}).join('');}
+   r.querySelectorAll('#rf button').forEach(function(b){b.addEventListener('click',function(){r.querySelectorAll('#rf button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});draw(b.dataset.f);});});
+   draw('all');}
+});
+
+/* L11 */
+var SC={thận:{name:'Thận trọng',pct:'50%',rev:1140,pro:-185},cs:{name:'Cơ sở',pct:'100%',rev:2280,pro:580},lq:{name:'Lạc quan',pct:'130%',rev:2964,pro:1040}};
+function fmt(n){return (n<0?'−':'')+Math.abs(n).toLocaleString('vi-VN');}
+lesson({part:5,min:5,title:'Con số năm đầu',sum:'Doanh thu, chi phí, hòa vốn và ba kịch bản.',
+ html:function(){return ''+
+ '<p class="lede">Giả định năm đầu: bán 20.000 hộ chiếu (khoảng 55 cuốn mỗi ngày, dưới 2% lượng khách nếu Khu di tích đạt từ một triệu lượt mỗi năm), trong đó khoảng 30% nâng cấp lên gói quà. Đơn vị: triệu đồng, chưa tính thuế.</p>'+
+ '<h2>Doanh thu dự kiến: 2.280</h2>'+
+ '<div class="stack" role="img" aria-label="Cơ cấu doanh thu"><i style="width:43%;background:var(--green)"></i><i style="width:26.3%;background:var(--gold)"></i><i style="width:17.5%;background:var(--coral)"></i><i style="width:13.2%;background:var(--wood)"></i></div>'+
+ '<div class="legend"><span><i style="background:var(--green)"></i>Bán hộ chiếu (20.000 × 49.000 đ)<b>980</b></span><span><i style="background:var(--gold)"></i>Nâng cấp gói quà (6.000 × 100.000 đ)<b>600</b></span><span><i style="background:var(--coral)"></i>Bán hàng trực tuyến<b>400</b></span><span><i style="background:var(--wood)"></i>Gói đoàn, tài trợ<b>300</b></span></div>'+
+ '<h2>Chi phí</h2>'+
+ '<h3>Đầu tư ban đầu: khoảng 350</h3>'+
+ '<div id="inv"></div>'+
+ '<h3 style="margin-top:22px">Vận hành năm đầu: khoảng 1.700</h3>'+
+ '<div id="opx"></div>'+
+ '<h2>Lợi nhuận và hòa vốn</h2>'+
+ '<div class="big"><div><b>~580</b><span>Lợi nhuận trước thuế năm đầu (2.280 − 1.700), biên khoảng 25%</span></div><div><b>9 đến 12 tháng</b><span>Thời gian hoàn vốn kỳ vọng, có tính mùa vụ</span></div><div><b>~697</b><span>Dòng tiền hoạt động mỗi năm, khoảng 58 mỗi tháng</span></div><div><b>~12.400</b><span>Hộ chiếu để hòa vốn, khoảng 34 cuốn mỗi ngày</span></div></div>'+
+ '<div class="track" id="trk" style="--be:47.7%"><div class="fill" style="width:100%"></div>'+
+ '<div class="mk up" style="left:47.7%"><span>Hòa vốn 62%</span></div><div class="mk dn" style="left:76.9%"><span>Cơ sở 100%</span></div></div>'+
+ '<p style="font-size:13.5px;color:var(--muted)">Thang từ 0 đến 130% doanh số của kịch bản cơ sở. Phần đỏ là vùng chưa hòa vốn.</p>'+
+ '<h2>Ba kịch bản</h2>'+
+ '<div class="scn" role="group" aria-label="Chọn kịch bản">'+Object.keys(SC).map(function(k,i){return '<button data-k="'+k+'" aria-pressed="'+(k==='cs')+'"><b>'+SC[k].name+'</b><span>Doanh số '+SC[k].pct+' so với cơ sở</span></button>';}).join('')+'</div>'+
+ '<div class="big"><div><b id="s-rev"></b><span>Doanh thu (triệu đồng)</span></div><div><b id="s-pro"></b><span>Lợi nhuận trước thuế (triệu đồng)</span></div></div>'+
+ '<p id="s-txt" style="margin-top:10px;color:var(--muted)"></p>'+
+ '<p class="note">Các số liệu là giả định để dự toán sơ bộ; nhóm sẽ hiệu chỉnh khi có báo giá thực tế, kết quả chạy thử và số liệu lượng khách từ Khu di tích.</p>'+
+ bubble('Con số nào cũng sẽ được chạy thử với 200 đến 300 khách trước khi mình tin. Đó là cách làm thận trọng.');},
+ init:function(r){
+   function bars(id,rows,max){r.querySelector(id).innerHTML=rows.map(function(x){return '<div class="hbar"><span>'+x[0]+'</span><span class="t"><i style="width:'+(x[1]/max*100)+'%"></i></span><b>'+x[1]+'</b></div>';}).join('');}
+   bars('#inv',[['Thiết kế, bộ nhận diện',40],['In ấn lô đầu',30],['Khắc ấn mộc, hộp khóa',15],['Quầy trạm, standee',55],['Website, QR, video',90],['Nguyên liệu, quà tồn kho',70],['Truyền thông khởi động',50]],90);
+   bars('#opx',[['Giá vốn hàng bán',750],['Nhân sự',540],['Marketing, CSKH',150],['Khấu hao (3 năm)',117],['Thuê quầy, kho',60],['Quản lý khác',53],['Website, QR, nền tảng',30]],750);
+   var txt={thận:'Nhóm sẽ cắt giảm nhân sự thời vụ, hoãn mở rộng và tăng bán B2B để giảm thiểu rủi ro.',cs:'Kịch bản nền của toàn bộ dự toán.',lq:'Doanh số cao hơn 30% so với kịch bản cơ sở.'};
+   function draw(k){var s=SC[k];var p=r.querySelector('#s-pro');r.querySelector('#s-rev').textContent='~'+fmt(s.rev);p.textContent=(s.pro<0?'~':'~')+fmt(s.pro);p.className=s.pro<0?'neg':'';r.querySelector('#s-txt').textContent=txt[k];
+     r.querySelectorAll('.scn button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===k));});}
+   r.querySelectorAll('.scn button').forEach(function(b){b.addEventListener('click',function(){draw(b.dataset.k);});});
+   draw('cs');}
+});
+
+/* L12 */
+lesson({part:6,min:3,title:'Truyền thông: Về nguồn, nhớ nguồn, kể nguồn',sum:'Kế hoạch bốn giai đoạn và các kênh.',
+ html:function(){return ''+
+ '<p class="lede">Mục tiêu: để Gen Z và gia đình biết đến Hộ Chiếu Cội Nguồn trước khi tới Đền Hùng, khuyến khích mua và hoàn thành hành trình, tạo nội dung do người dùng chia sẻ.</p>'+
+ '<div class="card" style="margin-top:16px;text-align:center"><div class="eyebrow">Hashtag thử thách</div><p style="font-family:var(--font-display);font-size:clamp(22px,4vw,32px);font-weight:700;color:var(--coral);margin-top:4px;overflow-wrap:anywhere">#HoChieuCoiNguon · #ChamDauDatTo</p><p style="color:var(--muted);font-size:14.5px">Đăng ảnh hộ chiếu đã đóng đủ ấn mộc để nhận ưu đãi.</p></div>'+
+ '<h2>Bốn giai đoạn</h2>'+
+ '<div class="tl">'+
+ '<div class="it"><small>4 đến 6 tuần trước ra mắt</small><b>Gây tò mò</b><p>Teaser, đếm ngược, hé lộ ấn mộc, giải đố về Đất Tổ; ra mắt fanpage và kênh TikTok.</p></div>'+
+ '<div class="it"><small>Tháng đầu vận hành</small><b>Ra mắt, trải nghiệm</b><p>Khai trương tại Đền Hùng; mời KOL, KOC, báo chí địa phương, câu lạc bộ sinh viên; ưu đãi người đi sớm.</p></div>'+
+ '<div class="it"><small>Hằng tháng</small><b>Duy trì, lan tỏa</b><p>Cuộc thi ảnh, chương trình đủ bộ, câu chuyện làng nghề, ưu đãi theo mùa.</p></div>'+
+ '<div class="it"><small>Dịp Giỗ Tổ, nghỉ lễ</small><b>Tăng tốc</b><p>Chiến dịch #HoChieuCoiNguon, quảng cáo mạng xã hội, hợp tác lữ hành.</p></div></div>'+
+ '<h2>Kênh và chỉ số</h2>'+
+ tbl(['Kênh','Mục đích','Chỉ số'],[
+  ['TikTok','Tiếp cận Gen Z bằng video ngắn, thử thách','Lượt xem, chia sẻ, số video dùng hashtag'],
+  ['Facebook','Tiếp cận gia đình, đoàn trường học; bán hàng','Lượt tiếp cận, tương tác, đơn đặt trước'],
+  ['Zalo','Chăm sóc khách, nhóm cộng đồng, bán gói đoàn','Số thành viên, tỷ lệ phản hồi'],
+  ['YouTube','Video giới thiệu, câu chuyện làng nghề','Lượt xem, thời gian xem'],
+  ['Website, QR','Bán hàng, nội dung sản phẩm','Lượt truy cập, lượt quét QR, tỷ lệ mua'],
+  ['Báo chí địa phương, KOL, KOC','Tạo uy tín, tiếp cận rộng','Số bài viết, lượt hiển thị']
+ ])+
+ '<p class="note">Ngân sách truyền thông năm đầu khoảng 200 triệu đồng (50 triệu khởi động, 150 triệu duy trì), rà soát hằng quý theo chi phí mỗi khách mới và tỷ lệ chuyển đổi.</p>'+
+ '<h2>Công cụ truyền thông</h2><ul><li>Bộ nhận diện: logo, màu sắc, họa tiết trống đồng, hoa văn Đất Tổ.</li><li>Hộ chiếu mẫu, bản đồ, poster, standee check-in.</li><li>Video giới thiệu 30 đến 60 giây và video câu chuyện làng nghề gắn với mã QR.</li><li>Website, fanpage Facebook, kênh TikTok, nhóm Zalo cộng đồng; tờ rơi và QR tại khách sạn, homestay.</li><li>Đại sứ sinh viên, cuộc thi sáng tạo nội dung, hợp tác cơ quan quản lý và báo chí.</li></ul>'+
+ bubble('Mình sẽ xuất hiện trong teaser đầu tiên. Bạn đoán được ấn mộc nào sẽ được hé lộ trước không?');}
+});
+
+/* L13 */
+lesson({part:6,min:3,title:'Đội ngũ và đối tác',sum:'Ai làm gì, ai đồng hành, vốn đến từ đâu.',
+ html:function(){return ''+
+ '<p class="lede">Nhân sự vận hành ưu tiên người dân địa phương và sinh viên tại Việt Trì, được đào tạo về nội dung di tích, kỹ năng giao tiếp và ứng xử tại không gian linh thiêng.</p>'+
+ '<h2>Bộ máy</h2>'+
+ '<div class="grid g2" style="margin-top:10px"><div class="card"><h3>Giám đốc dự án</h3><p>Phụ trách chung.</p></div><div class="card"><h3>Sản phẩm, nội dung</h3><p>Thiết kế, kịch bản, câu chuyện, QR; làm việc với nghệ nhân.</p></div><div class="card"><h3>Vận hành, dịch vụ</h3><p>Trạm, hướng dẫn viên, quà đổi thưởng, an toàn.</p></div><div class="card"><h3>Marketing, kinh doanh</h3><p>Truyền thông, website, bán B2B, chăm sóc khách hàng.</p></div></div>'+
+ '<p style="margin-top:12px">Ngoài ra có bộ phận <b>Tài chính, hậu cần</b>: kế toán, kho, mua hàng.</p>'+
+ tbl(['Vị trí','SL','Nhiệm vụ'],[
+  ['Quản lý dự án','1','Điều phối chung, làm việc với di tích và đối tác, theo dõi tiến độ, ngân sách'],
+  ['Thiết kế, nội dung','1 đến 2','Thiết kế hộ chiếu, ấn mộc, kịch bản thử thách, câu chuyện văn hóa'],
+  ['Vận hành trạm, hướng dẫn viên','4 đến 6','Đóng ấn mộc, tổ chức mini game, kể chuyện, hỗ trợ khách'],
+  ['Marketing, thương mại điện tử','1 đến 2','Quản lý website, mạng xã hội, bán hàng trực tuyến, chăm sóc khách'],
+  ['Kế toán, hậu cần','1','Quản lý tài chính, kho, nhà cung cấp']
+ ])+
+ '<h2>Đối tác chính</h2>'+
+ tbl(['Đối tác','Vai trò','Lợi ích nhận được'],[
+  ['Ban quản lý Khu di tích','Cho phép đặt trạm, thẩm định nội dung','Tăng sức hấp dẫn với người trẻ, công cụ giáo dục'],
+  ['Hợp tác xã, nghệ nhân OCOP','Cung ứng nguyên liệu và quà','Đầu ra ổn định, tiếp cận khách trẻ, kể được câu chuyện sản phẩm'],
+  ['Đơn vị in ấn, thiết kế','Sản xuất hộ chiếu, bản đồ, standee','Đơn hàng định kỳ'],
+  ['Trường học, doanh nghiệp','Mua gói theo đoàn','Ngoại khóa, team building có ý nghĩa'],
+  ['Công ty lữ hành, khách sạn','Bán gói trải nghiệm','Sản phẩm mới thu hút khách; hoa hồng'],
+  ['Nhà tài trợ, thương hiệu địa phương','Tài trợ, quảng cáo','Tiếp cận khách tại điểm đến, gắn thương hiệu với di sản']
+ ])+
+ '<p style="margin-top:14px">Dự án cũng dự kiến nhận tư vấn từ Sở Văn hóa, Thể thao và Du lịch Phú Thọ, Đoàn – Hội và các trung tâm hỗ trợ khởi nghiệp.</p>'+
+ '<h2>Huy động vốn: khoảng 350 triệu</h2><ul><li>Vốn góp của đội nhóm và gia đình.</li><li>Quỹ hỗ trợ khởi nghiệp sáng tạo, giải thưởng cuộc thi.</li><li>Tài trợ từ doanh nghiệp, thương hiệu địa phương đổi lấy quyền quảng bá.</li><li>Thu trước từ đơn theo đoàn, đặt trước hộ chiếu, bán combo quà.</li><li>Vay ưu đãi dành cho khởi nghiệp, nếu cần.</li></ul>'+
+ bubble('Cần nhiều bàn tay để một chú chim bay xa. Mình biết ơn tất cả đối tác.');}
+});
+
+/* L14 */
+lesson({part:6,min:4,title:'Tăng trưởng và tác động',sum:'Ba năm mở rộng, chỉ số theo dõi và giá trị cộng đồng.',
+ html:function(){
+  var yrs=[['Năm 1',2280,580],['Năm 2',3870,970],['Năm 3',5660,1360]],mx=5660;
+  return ''+
+ '<p class="lede">Từ Đền Hùng, mô hình mở dần sang các điểm đến khác của Phú Thọ, rồi ra các tỉnh lân cận.</p>'+
+ '<h2>Doanh thu và lợi nhuận dự kiến</h2>'+
+ '<div class="cols" role="img" aria-label="Doanh thu và lợi nhuận ba năm">'+yrs.map(function(y){return '<div class="cgrp"><div class="cpair"><div class="cbar" style="height:'+(y[1]/mx*80)+'%;background:var(--green)"><em>'+y[1].toLocaleString('vi-VN')+'</em></div><div class="cbar" style="height:'+(y[2]/mx*80)+'%;background:var(--gold)"><em>'+y[2].toLocaleString('vi-VN')+'</em></div></div><div class="clab">'+y[0]+'</div></div>';}).join('')+'</div>'+
+ '<div class="legend" style="grid-template-columns:repeat(2,auto);justify-content:start;gap:6px 22px"><span><i style="background:var(--green)"></i>Doanh thu</span><span><i style="background:var(--gold)"></i>Lợi nhuận trước thuế</span></div>'+
+ '<p class="note">Đơn vị: triệu đồng. Hộ chiếu bán ra: 20.000, 30.000, 40.000. Gói nâng cấp quà: 6.000, 10.000, 14.000.</p>'+
+ '<h2>Lộ trình mở rộng</h2>'+
+ '<div class="tl"><div class="it"><small>Năm 1</small><b>Tập trung Đền Hùng</b><p>Hoàn thiện sản phẩm, hợp tác với di tích và trường học, xây cộng đồng mạng xã hội.</p></div>'+
+ '<div class="it"><small>Năm 2</small><b>Mở rộng trong Phú Thọ</b><p>Các phiên bản “Hộ chiếu Đất Tổ” gắn với làng Xoan, hồ Ao Châu, rừng quốc gia Xuân Sơn, các làng nghề; ra mắt hộ chiếu số.</p></div>'+
+ '<div class="it"><small>Năm 3</small><b>Nhân rộng</b><p>Hợp tác các tỉnh lân cận; bán quà OCOP toàn quốc qua thương mại điện tử; nhượng quyền mô hình cho điểm di tích khác.</p></div></div>'+
+ '<h2>Chỉ số theo dõi năm đầu</h2>'+
+ '<div class="grid g4 keep2" style="margin-top:10px">'+
+ [['20.000','hộ chiếu bán ra'],['≥ 60%','hoàn thành đủ 6 ấn mộc'],['≥ 30%','mua gói nâng cấp'],['≥ 4,5/5','điểm hài lòng'],['≥ 15.000','lượt quét QR'],['≥ 3.000','đơn hàng trực tuyến'],['≥ 20','trường học, đơn vị lữ hành hợp tác'],['≥ 3.000','bài đăng chứa hashtag']].map(function(k){return '<div class="card stat"><b style="font-size:26px">'+k[0]+'</b><span>'+k[1]+'</span></div>';}).join('')+'</div>'+
+ '<h2>Tác động xã hội</h2>'+
+ '<ul><li><b>Việc làm:</b> ước tính 9 đến 12 vị trí trực tiếp tại địa phương, cùng thu nhập bổ sung cho hộ dân và nghệ nhân cung ứng.</li><li><b>Đầu ra sản phẩm địa phương:</b> tăng tiêu thụ nón lá, quạt lá cọ, chè, quế, bưởi và sản phẩm OCOP; giá trị được nâng lên nhờ câu chuyện và thiết kế.</li><li><b>Giáo dục truyền thống “Uống nước nhớ nguồn”:</b> học sinh, sinh viên, trẻ em tiếp cận lịch sử Hùng Vương theo cách gần gũi.</li><li><b>Quảng bá Đất Tổ:</b> nội dung du khách chia sẻ giúp lan tỏa di sản.</li><li><b>Hệ sinh thái bền vững:</b> liên kết di tích, doanh nghiệp, hợp tác xã và cộng đồng.</li></ul>'+
+ '<div class="card" style="margin-top:28px;text-align:center;background:var(--soft-gold)"><img src="'+IMG.front+'" alt="Lạc Lạc" style="width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:50% 22%;margin:0 auto 8px;border:3px solid var(--surface)"><h3 style="font-size:26px;color:var(--coral)">Khắc ấn Đất Tổ – Đánh thức ngàn năm.</h3><p style="margin-top:6px">Về nguồn. Nhớ nguồn. Kể nguồn.</p></div>';}
+});
+
+/* ---------- state ---------- */
+var KEY='lac-lac-done';var done={};
+try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){done={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+function lid(i){return 'L'+(i<10?'0':'')+i;}
+function partOf(i){return L[i].part;}
+function partDone(p){var ls=L.map(function(x,i){return [x,i];}).filter(function(x){return x[0].part===p;});return ls.length&&ls.every(function(x){return done[lid(x[1])];});}
+function stampsEarned(){return PARTS.filter(function(p){return partDone(p.n);}).length;}
+
+function renderProg(){
+  var n=stampsEarned();
+  document.getElementById('prog').innerHTML='<span class="lbl">Đã đóng ấn</span><span class="dots" aria-hidden="true">'+PARTS.map(function(p){return '<i class="dot'+(partDone(p.n)?' on':'')+'"></i>';}).join('')+'</span><b>'+n+'/6</b>';
+}
+
+/* ---------- views ---------- */
+var app=document.getElementById('app');
+function syllabus(){
+  return PARTS.map(function(p){
+    var rows=L.map(function(x,i){return x.part===p.n?'<a class="lesson-row'+(done[lid(i)]?' done':'')+'" href="#'+lid(i)+'" data-go="'+lid(i)+'"><span class="n">Bài '+i+'</span><span><b>'+x.title+'</b><span>'+x.sum+'</span></span><span class="m">'+x.min+' phút</span></a>':'';}).join('');
+    return '<div class="part"><div class="part-h"><h3>Phần '+p.n+' · '+p.name+'</h3><small>'+p.sub+'</small></div>'+rows+'</div>';}).join('');
+}
+function home(){
+  app.innerHTML=''+
+  '<section class="hero"><div class="wrap"><div>'+
+  '<div class="eyebrow">Dự án khởi nghiệp · Đất Tổ Phú Thọ</div>'+
+  '<h1 style="margin-top:10px">Khắc ấn Đất Tổ.<br><em>Đánh thức</em> ngàn năm.</h1>'+
+  '<p class="lead">Hộ Chiếu Cội Nguồn biến chuyến đi Đền Hùng thành một cuộc phiêu lưu có nhiệm vụ, có ấn mộc để sưu tầm và có quà mang bản sắc Phú Thọ. Lạc Lạc sẽ dẫn bạn đi qua toàn bộ dự án.</p>'+
+  '<div class="cta-row"><a class="btn" href="#L00" data-go="L00">Bắt đầu hành trình</a><a class="btn ghost" href="#lotrinh" data-go="lotrinh">Xem lộ trình</a></div>'+
+  '<div class="chips"><span class="chip">Cổng nguồn</span><span class="chip">Đền Hạ</span><span class="chip">Đền Trung</span><span class="chip">Đền Thượng</span><span class="chip">Lăng Vua Hùng</span><span class="chip">Đền Giếng</span></div>'+
+  '</div><div class="hero-art"><div class="plinth"></div><img src="'+IMG.front+'" alt="Lạc Lạc, chú chim Lạc bằng len với hộ chiếu mini"><span class="tag a">Sứ giả cội nguồn</span><span class="tag b">Cao khoảng 10 cm</span></div></div></section>'+
+  '<section class="band"><div class="wrap"><div class="grid g4 keep2">'+
+  '<div class="card stat"><b>6</b><span>trạm, 6 ấn mộc</span></div><div class="card stat"><b>49.000đ</b><span>giá dự kiến một hộ chiếu</span></div><div class="card stat"><b>20.000</b><span>hộ chiếu mục tiêu năm đầu</span></div><div class="card stat"><b>9 đến 12</b><span>việc làm trực tiếp tại địa phương</span></div></div></div></section>'+
+  '<section class="band"><div class="wrap"><div class="mascot-show"><div class="viewer"><div class="frame"><img id="hv" src="'+IMG.side+'" alt="Lạc Lạc nhìn nghiêng"></div><div class="seg" role="group" aria-label="Góc nhìn"><button aria-pressed="false" data-v="front">Mặt trước</button><button aria-pressed="true" data-v="side">Mặt bên</button><button aria-pressed="false" data-v="back">Mặt sau</button></div></div>'+
+  '<div><div class="eyebrow">Linh vật của dự án</div><h2 style="margin-top:6px">Lạc Lạc, sứ giả cội nguồn</h2><p class="sub">Chú chim Lạc nhỏ bé mang theo câu chuyện cội nguồn và những hành trình khám phá Việt Nam. Mascot lưu niệm thủ công, thân thiện môi trường.</p>'+
+  '<ul style="margin:14px 0 0;padding-left:20px"><li>Thiết kế tối giản, dễ gia công.</li><li>Len nhung an toàn, thân thiện môi trường.</li><li>Món quà ý nghĩa cho Gen Z.</li><li>Sưu tầm và đồng hành cùng hành trình khám phá văn hóa Việt Nam.</li></ul>'+
+  '<div class="cta-row"><a class="btn ghost small" href="#L00" data-go="L00">Gặp Lạc Lạc kỹ hơn</a></div></div></div></div></section>'+
+  '<section class="band"><div class="wrap"><h2>Bạn sẽ biết gì sau 15 bài</h2><div class="grid g3" style="margin-top:14px">'+
+  '<a class="card" href="#L04" data-go="L04" style="text-decoration:none"><div class="eyebrow">Bài 4</div><h3>Hành trình 6 trạm</h3><p>Du khách đi, chơi, học và đóng ấn ở đâu, và thử đóng ấn ngay trên trang.</p></a>'+
+  '<a class="card" href="#L05" data-go="L05" style="text-decoration:none"><div class="eyebrow">Bài 5</div><h3>Túi hương tự phối</h3><p>Quà lưu niệm từ nguyên liệu Phú Thọ, mỗi du khách một món khác nhau.</p></a>'+
+  '<a class="card" href="#L11" data-go="L11" style="text-decoration:none"><div class="eyebrow">Bài 11</div><h3>Bài toán kinh doanh</h3><p>Doanh thu, chi phí, điểm hòa vốn và ba kịch bản của năm đầu.</p></a></div></div></section>'+
+  '<section class="band" id="lotrinh"><div class="wrap"><h2>Lộ trình</h2><p class="sub">Sáu phần, mỗi phần mang tên một trạm. Hoàn thành các bài trong phần để đóng ấn mộc cho phần đó.</p>'+syllabus()+'</div></section>';
+  app.querySelectorAll('[data-v]').forEach(function(b){b.addEventListener('click',function(){app.querySelectorAll('[data-v]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});var im=app.querySelector('#hv');im.src=IMG[b.dataset.v];});});
+}
+function lessonView(i){
+  var x=L[i],p=PARTS[x.part-1];
+  var side=PARTS.map(function(pp){return '<div class="p-title">'+pp.n+'. '+pp.name+(partDone(pp.n)?' <span style="color:var(--ink-stamp)">●</span>':'')+'</div>'+L.map(function(y,j){return y.part===pp.n?'<a href="#'+lid(j)+'" data-go="'+lid(j)+'"'+(j===i?' aria-current="page"':'')+(done[lid(j)]?' class="done"':'')+'><span class="n">B'+j+'</span><span>'+y.title+'</span></a>':'';}).join('');}).join('');
+  var prev=i>0?'<a class="btn ghost" href="#'+lid(i-1)+'" data-go="'+lid(i-1)+'">← Bài '+(i-1)+'</a>':'<a class="btn ghost" href="#" data-go="home">← Trang chủ</a>';
+  var next=i<L.length-1?'<a class="btn" href="#'+lid(i+1)+'" data-go="'+lid(i+1)+'" id="nx">Bài '+(i+1)+' →</a>':'<a class="btn" href="#" data-go="home">Về trang chủ</a>';
+  app.innerHTML='<div class="wrap"><div class="shell"><nav class="side" aria-label="Mục lục"><details id="dt"><summary>Mục lục · Bài '+i+'/'+(L.length-1)+'</summary><div>'+side+'</div></details></nav>'+
+  '<article class="article"><div class="crumb"><span>Phần '+p.n+' · '+p.name+'</span><span>·</span><span>Bài '+i+'</span><span>·</span><span>'+x.min+' phút đọc</span></div><h1>'+x.title+'</h1><div id="body">'+x.html()+'</div>'+
+  '<div class="pager">'+prev+'<div class="grow"><button class="btn ghost" id="mk">'+(done[lid(i)]?'Đã hoàn thành ✓':'Đánh dấu đã đọc')+'</button>'+next+'</div></div></article></div></div>';
+  var dt=app.querySelector('#dt');if(dt&&window.matchMedia('(min-width:901px)').matches)dt.open=true;
+  if(x.init)x.init(app.querySelector('#body'));
+  app.querySelector('#mk').addEventListener('click',function(){
+    var was=stampsEarned();done[lid(i)]=!done[lid(i)];save();renderProg();
+    this.textContent=done[lid(i)]?'Đã hoàn thành ✓':'Đánh dấu đã đọc';
+    var now=stampsEarned();
+    app.querySelectorAll('.side a')[i]&&app.querySelectorAll('.side a')[i].classList.toggle('done',!!done[lid(i)]);
+    if(now>was){this.textContent='Đã đóng ấn mộc phần '+p.n+' ✓';}
+  });
+}
+
+/* ---------- routing ---------- */
+function parse(h){h=(h||'').replace(/^#\/?/,'');var m=/^L(\d{2})$/.exec(h);if(m&&+m[1]<L.length)return +m[1];return h==='lotrinh'?'lotrinh':'home';}
+var cur=null;
+function go(r,push){
+  if(r==='lotrinh'){if(cur!=='home'){home();cur='home';renderProg();}var e=document.getElementById('lotrinh');if(e)e.scrollIntoView({behavior:'smooth'});return;}
+  if(r===cur){return;}
+  cur=r;
+  if(r==='home')home();else lessonView(r);
+  renderProg();window.scrollTo(0,0);
+}
+function route(){go(parse(location.hash));}
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('[data-go]');if(!a)return;
+  e.preventDefault();var t=a.dataset.go;
+  var r=t==='home'?'home':(t==='lotrinh'?'lotrinh':+t.slice(1));
+  try{history.replaceState(null,'',t==='home'?location.pathname+location.search:'#'+t);}catch(x){}
+  if(r!=='lotrinh')cur=null;
+  go(r);
+});
+window.addEventListener('hashchange',function(){cur=null;route();});
+
+/* ---------- share ---------- */
+var BASE='https://claude.ai/artifact/S68122tGcKKHJtwJT3FyL3';
+var ov=null;
+function shareState(scope){
+  var isL=typeof cur==='number';
+  var useL=isL&&scope==='lesson';
+  var url=BASE+(useL?'#'+lid(cur):'');
+  var cap=useL?('Bài '+cur+' – '+L[cur].title+' | Hộ Chiếu Cội Nguồn cùng Lạc Lạc'):'Hộ Chiếu Cội Nguồn cùng Lạc Lạc: khắc ấn Đất Tổ, đánh thức ngàn năm.';
+  return {isL:isL,url:url,text:cap+'\n'+url+'\n#HoChieuCoiNguon #ChamDauDatTo'};
+}
+function closeShare(){if(ov){ov.remove();ov=null;}document.removeEventListener('keydown',onKey);var b=document.getElementById('shopen');if(b)b.focus();}
+function onKey(e){if(e.key==='Escape')closeShare();}
+function copyText(txt,input,msg){
+  function fb(){input.focus();input.select();msg.textContent='Chưa sao chép tự động được. Văn bản đã được chọn, hãy nhấn Ctrl+C.';}
+  try{navigator.clipboard.writeText(txt).then(function(){msg.textContent='Đã sao chép.';},fb);}catch(e){fb();}
+}
+function openShare(){
+  if(ov)return;
+  var scope='lesson';var st=shareState(scope);
+  ov=document.createElement('div');ov.className='shov';
+  ov.innerHTML='<div class="shdlg" role="dialog" aria-modal="true" aria-labelledby="sht"><h3 id="sht">Chia sẻ kênh Lạc Lạc</h3><p style="color:var(--muted);font-size:14.5px">Người nhận cần có quyền mở trang. Chủ trang cấp quyền trong menu Share của trang.</p>'+
+  '<div class="seg" id="shseg" role="group" aria-label="Phạm vi chia sẻ" style="margin-top:12px"><button type="button" data-s="home" aria-pressed="false">Trang chủ</button><button type="button" data-s="lesson" aria-pressed="true">Bài đang xem</button></div>'+
+  '<div class="shrow"><input id="shurl" type="text" readonly aria-label="Đường dẫn"><button class="btn small" id="shcopy" type="button">Sao chép link</button></div>'+
+  '<textarea id="shtxt" readonly aria-label="Lời nhắn kèm link"></textarea>'+
+  '<div class="shact"><button class="btn ghost small" id="shcopyt" type="button">Sao chép lời nhắn</button><a class="btn ghost small" id="shfb" target="_blank" rel="noopener" href="#">Đăng lên Facebook</a><button class="btn ghost small" id="shx" type="button">Đóng</button></div>'+
+  '<p class="shmsg" id="shmsg" aria-live="polite"></p></div>';
+  document.body.appendChild(ov);
+  var u=ov.querySelector('#shurl'),t=ov.querySelector('#shtxt'),m=ov.querySelector('#shmsg'),fb=ov.querySelector('#shfb');
+  function fill(){st=shareState(scope);u.value=st.url;t.value=st.text;fb.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(st.url);
+    ov.querySelectorAll('#shseg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===scope));});
+    ov.querySelector('[data-s="lesson"]').hidden=!st.isL;m.textContent='';}
+  if(!st.isL)scope='home';
+  fill();
+  ov.querySelectorAll('#shseg button').forEach(function(b){b.addEventListener('click',function(){scope=b.dataset.s;fill();});});
+  ov.querySelector('#shcopy').addEventListener('click',function(){copyText(u.value,u,m);});
+  ov.querySelector('#shcopyt').addEventListener('click',function(){copyText(t.value,t,m);});
+  ov.querySelector('#shx').addEventListener('click',closeShare);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeShare();});
+  document.addEventListener('keydown',onKey);
+  ov.querySelector('#shcopy').focus();
+}
+document.getElementById('shopen').addEventListener('click',openShare);
+route();renderProg();
+})();
+</script>
+
+</body></html>
